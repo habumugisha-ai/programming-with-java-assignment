@@ -1,0 +1,58 @@
+package Bags;
+import java.util.Scanner;
+
+public class Asuperitem {
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter number of different items: ");
+        int n = sc.nextInt();
+        sc.nextLine();  // consume newline
+
+        String[] itemNames = new String[n];
+        double[] prices = new double[n];
+        int[] quantities = new int[n];
+        double[] subtotals = new double[n];
+
+        double Total = 0;
+
+        // Input items
+        for (int i = 0; i < n; i++) {
+            System.out.println("\nEnter details for item " + (i + 1));
+            System.out.print("Item name: ");
+            itemNames[i] = sc.nextLine();
+            System.out.print("Price per unit: ");
+            prices[i] = sc.nextDouble();
+            System.out.print("Quantity: ");
+            quantities[i] = sc.nextInt();
+            sc.nextLine(); // consume newline
+
+            subtotals[i] = prices[i] * quantities[i];
+            Total += subtotals[i];
+        }
+
+        // Discount
+        double discount = 0;
+        if (Total > 50000) {
+            discount = Total * 0.05;
+        }
+        double finalAmount = Total - discount;
+
+        // Output receipt
+        System.out.println("\n----- Supermarket Receipt -----");
+        System.out.println("Item\t\tQuantity\tPrice\t\tSubtotal");
+
+        for (int i = 0; i < n; i++) {
+            System.out.println(itemNames[i] + "\t\t" + quantities[i] + "\t\t" 
+                    + prices[i] + "\t\t" + subtotals[i]);
+        }
+
+        System.out.println("--------------------------------------");
+        System.out.println("Total: " + Total);
+        System.out.println("Discount: " + discount);
+        System.out.println("Final Amount to Pay: " + finalAmount);
+
+        sc.close();
+    }
+}
